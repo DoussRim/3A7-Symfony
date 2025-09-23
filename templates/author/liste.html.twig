@@ -1,0 +1,25 @@
+<h1>Le nombre des auteurs est : {{auth |length}} </h1>
+
+{%if auth is defined and auth is not empty%}
+<table border="1">
+    <tr>
+        <th>Id</th><th>Picture</th>
+        <th>Username</th><th>email</th>
+        <th>nb_books</th>
+    </tr>
+    {% set total_books=0%}
+    {% for a in auth%}
+    {% set total_books=total_books+a.nb_books %}
+    <tr>
+        <td>{{a.id}}</td>
+        <td><img src="{{asset(a.picture)}}" height="50px" width="50px"></td>
+        <td>{{a.username}}</td>
+        <td>{{a.email}}</td>
+        <td>{{a.nb_books}}</td>
+    </tr>
+    {%else%} 
+    <h2>Table not found</h2>
+    {% endfor %}
+</table>
+{%endif%}
+<h1>Le nomre des books = {{total_books}}</h1>
