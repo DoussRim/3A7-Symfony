@@ -12,6 +12,7 @@ class Author
 {
     #[ORM\Id]
     #[ORM\Column]
+    // #[Assert\Length(max=8))]
     private ?int $cin = null;
 
     #[ORM\Column(length: 255)]

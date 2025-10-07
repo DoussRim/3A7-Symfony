@@ -1,0 +1,11 @@
+<h1>Author List</h1> <i><a href="{{path('Add')}}">Add Author</a></i>
+{%for l in ll%}
+    <ul>
+        <li>{{l.cin}}</li>
+         <li>{{l.username}}</li>
+          <li>{{l.email}}</li>
+          <li><a href="">Détails</a>||
+          <a href="{{path('DEL',{pk:l.cin})}}">Delete</a>||
+          <a href="">Update</a></li>
+    </ul>
+{% endfor %}
