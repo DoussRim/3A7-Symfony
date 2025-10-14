@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Author;
 use App\Form\AuthorType;
 use App\Repository\AuthorRepository;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -51,19 +52,14 @@ final class AuthorController extends AbstractController
         // return $this->render('author/Affiche.html.twig',['ll'=>$list]);
         return $this->render('author/Affiche.html.twig',['ll'=>$repo->findAll()]);
     }
-    // #[Route('/Delete/{pk}',name:'DEL')]
-    // function Delete($pk,EntityManagerInterface $em,AuthorRepository $repo){
-    //     $author=$repo->find($pk);
-    //     $em->remove($author);
-    //     $em->flush();
-    //     return $this->redirect('Liste');
-    // }
-    #[Route('/Delete/{pk}',name:'DEL')]
-    function Delete(Author $author,EntityManagerInterface $em){
+    #[Route('/Supp/{id}',name:'DEL')]
+    function Supprimer(Author $author,EntityManagerInterface $em,AuthorRepository $repo){
+        // $author=$repo->find($id);
         $em->remove($author);
         $em->flush();
         return $this->redirectToRoute('LL');
     }
+    
     #[Route('/Ajout',name:"Add")]
     function Ajout(EntityManagerInterface $em,Request $request){
         $author=new Author();
@@ -78,7 +74,6 @@ final class AuthorController extends AbstractController
             //redirection Affiche
             // return $this->redirectToRoute('LL');
             return $this->redirect('Affiche');
-
         }
         return $this->render('author/Ajout.html.twig',['f'=>$form]);
     }

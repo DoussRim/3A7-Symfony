@@ -5,7 +5,7 @@
          <li>{{l.username}}</li>
           <li>{{l.email}}</li>
           <li><a href="">Détails</a>||
-          <a href="{{path('DEL',{pk:l.cin})}}">Delete</a>||
+          <a href="{{path('DEL',{'id':l.cin})}}">Delete</a>||
           <a href="">Update</a></li>
     </ul>
 {% endfor %}
